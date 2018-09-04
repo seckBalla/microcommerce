@@ -2,6 +2,7 @@ package com.ecommerce.microcommerce.web.controller;
 
 import com.ecommerce.microcommerce.dao.ProductDao;
 import com.ecommerce.microcommerce.model.Product;
+import com.ecommerce.microcommerce.web.exceptions.ProduitGratuitException;
 import com.ecommerce.microcommerce.web.exceptions.ProduitIntrouvableException;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
@@ -25,7 +26,7 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductDao productDao;
+    ProductDao productDao;
 
 
     //Récupérer la liste des produits
@@ -74,6 +75,10 @@ public class ProductController {
         if (productAdded == null)
             return ResponseEntity.noContent().build();
 
+        if(productAdded.getPrix() == 0){
+            throw new ProduitGratuitException("Le produit ne peut pas être gratuit.");
+        }
+
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -104,10 +109,14 @@ public class ProductController {
     }
 
     @GetMapping(value = "/AdminProduits/{id}")
-    public int calculerMargeProduit(@PathVariable int id){
+    public String calculerMargeProduit(@PathVariable int id){
         Product produit = productDao.findById(id);
         if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE.");
+       return  produit.toString() + " Marge: " + (produit.getPrix() - produit.getPrixAchat());
+    }
 
-        return produit.getPrix() - produit.getPrixAchat();
+    @RequestMapping(value = "/ProduitsTries", method = RequestMethod.GET)
+    public List<Product> trierProduitsParOrdreAlphabetique(){
+        return  productDao.listProduitsParOrdreAlphabetique();
     }
 }

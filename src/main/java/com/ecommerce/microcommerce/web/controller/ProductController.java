@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 import java.net.URI;
 import java.util.List;
 
@@ -64,19 +65,20 @@ public class ProductController {
 
 
 
-
     //ajouter un produit
     @PostMapping(value = "/Produits")
 
     public ResponseEntity<Void> ajouterProduit(@Valid @RequestBody Product product) {
+        System.out.println("Prix du produit -> " + product.getPrix());
+
+        if(product.getPrix() == 0){
+            throw new ProduitGratuitException("Le produit ne peut pas être gratuit.");
+        }
 
         Product productAdded =  productDao.save(product);
 
-        if (productAdded == null)
+        if (productAdded == null){
             return ResponseEntity.noContent().build();
-
-        if(productAdded.getPrix() == 0){
-            throw new ProduitGratuitException("Le produit ne peut pas être gratuit.");
         }
 
         URI location = ServletUriComponentsBuilder
@@ -115,7 +117,8 @@ public class ProductController {
        return  produit.toString() + " Marge: " + (produit.getPrix() - produit.getPrixAchat());
     }
 
-    @RequestMapping(value = "/ProduitsTries", method = RequestMethod.GET)
+    //liste des produits triés
+    @GetMapping(value = "/ProduitsTries")
     public List<Product> trierProduitsParOrdreAlphabetique(){
         return  productDao.listProduitsParOrdreAlphabetique();
     }

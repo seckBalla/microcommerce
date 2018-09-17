@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Null;
 import java.net.URI;
-import java.util.List;
+import java.util.*;
 
 
 @Api( description="API pour es opérations CRUD sur les produits.")
@@ -69,7 +68,6 @@ public class ProductController {
     @PostMapping(value = "/Produits")
 
     public ResponseEntity<Void> ajouterProduit(@Valid @RequestBody Product product) {
-        System.out.println("Prix du produit -> " + product.getPrix());
 
         if(product.getPrix() == 0){
             throw new ProduitGratuitException("Le produit ne peut pas être gratuit.");
@@ -110,16 +108,20 @@ public class ProductController {
         return productDao.chercherUnProduitCher(400);
     }
 
-    @GetMapping(value = "/AdminProduits/{id}")
-    public String calculerMargeProduit(@PathVariable int id){
-        Product produit = productDao.findById(id);
-        if(produit==null) throw new ProduitIntrouvableException("Le produit avec l'id " + id + " est INTROUVABLE.");
-       return  produit.toString() + " Marge: " + (produit.getPrix() - produit.getPrixAchat());
+    @GetMapping(value = "/AdminProduits")
+    public Map<Product, Integer> calculerMargeProduit(){
+       List<Product> produits = productDao.findAll();
+       Map<Product, Integer> listProduitsAvecMarge = new HashMap<Product, Integer>();
+       for (Product product : produits){
+           listProduitsAvecMarge.put(product, product.getPrix() - product.getPrixAchat());
+       }
+       return listProduitsAvecMarge;
     }
 
     //liste des produits triés
+    @ApiOperation(value = "Affiche la liste des produits triés par odre aphabétique")
     @GetMapping(value = "/ProduitsTries")
     public List<Product> trierProduitsParOrdreAlphabetique(){
-        return  productDao.listProduitsParOrdreAlphabetique();
+        return  productDao.findAllByOrderByNomAsc();
     }
 }

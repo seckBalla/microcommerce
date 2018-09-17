@@ -1,0 +1,256 @@
+{
+	"id": "b866aa90-5c0f-46bb-1228-5ec91d956c5d",
+	"name": "Microcommerce",
+	"allTests": [],
+	"timestamp": 1537196955549,
+	"collection_id": "c5561ae8-1c37-6065-cfdd-aff9a2de5e60",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "c5561ae8-1c37-6065-cfdd-aff9a2de5e60",
+		"name": "Microcommerce",
+		"description": "test des microservices",
+		"order": [
+			"ccee14d2-b017-03d4-6f62-babcbdd1f548",
+			"55274c3c-0d46-4861-b6c0-db1d22fe90b5",
+			"7b02b2a1-c14b-60fe-9897-be7795d79606"
+		],
+		"folders": [],
+		"folders_order": [],
+		"requests": [
+			{
+				"id": "55274c3c-0d46-4861-b6c0-db1d22fe90b5",
+				"headers": "Content-Type: application/json\n",
+				"headerData": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"enabled": true
+					}
+				],
+				"url": "http://localhost:9090/Produits/",
+				"queryParams": [],
+				"pathVariables": {},
+				"pathVariableData": [],
+				"preRequestScript": null,
+				"method": "POST",
+				"collectionId": "c5561ae8-1c37-6065-cfdd-aff9a2de5e60",
+				"data": "{\n\t\"id\" : 10,\n\t\"nom\"  : \"Produit Gratuit\",\n\t\"prix\" : 0,\n\t\"prixAchat\" : 200\n}",
+				"dataMode": "raw",
+				"name": "Exception Produit gratuit",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1536071220774,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "7b02b2a1-c14b-60fe-9897-be7795d79606",
+				"headers": "Content-Type: application/json\n",
+				"headerData": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"enabled": true
+					}
+				],
+				"url": "http://localhost:9090/Produits/",
+				"queryParams": [],
+				"pathVariables": {},
+				"pathVariableData": [],
+				"preRequestScript": null,
+				"method": "GET",
+				"collectionId": "c5561ae8-1c37-6065-cfdd-aff9a2de5e60",
+				"data": "{\n\t\"id\" : 10,\n\t\"nom\"  : \"Produit Gratuit\",\n\t\"prix\" : 0,\n\t\"prixAchat\" : 200\n}",
+				"dataMode": "raw",
+				"name": "liste des produits triés",
+				"description": "",
+				"descriptionFormat": "html",
+				"time": 1536071261853,
+				"version": 2,
+				"responses": [],
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {}
+			},
+			{
+				"id": "ccee14d2-b017-03d4-6f62-babcbdd1f548",
+				"headers": "",
+				"headerData": [],
+				"url": "http://localhost:9090/ProduitsTries/",
+				"queryParams": [],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "GET",
+				"data": null,
+				"dataMode": "params",
+				"version": 2,
+				"tests": null,
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1536067256397,
+				"name": "calculerMargeProduit",
+				"description": "",
+				"collectionId": "c5561ae8-1c37-6065-cfdd-aff9a2de5e60",
+				"responses": []
+			}
+		],
+		"timestamp": 1535740924798,
+		"synced": false,
+		"syncedFilename": "",
+		"remote_id": 0,
+		"remoteLink": "",
+		"remoteLinkUpdatedAt": null,
+		"public": false,
+		"owner": 0,
+		"subscribed": false,
+		"createdAt": 1535740924798,
+		"updatedAt": 1537196946079,
+		"write": true,
+		"published": false,
+		"favorite": false,
+		"permissions": {},
+		"syncedPermissions": {},
+		"sharedWithTeam": false
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"id": "ccee14d2-b017-03d4-6f62-babcbdd1f548",
+			"name": "calculerMargeProduit",
+			"url": "http://localhost:9090/ProduitsTries/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				3480
+			],
+			"allTests": [
+				{}
+			],
+			"time": 3480,
+			"totalRequestTime": 3480,
+			"iterationResults": {}
+		},
+		{
+			"id": "55274c3c-0d46-4861-b6c0-db1d22fe90b5",
+			"name": "Exception Produit gratuit",
+			"url": "http://localhost:9090/Produits/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				1239
+			],
+			"allTests": [
+				{}
+			],
+			"time": 1239,
+			"totalRequestTime": 1239,
+			"iterationResults": {}
+		},
+		{
+			"id": "7b02b2a1-c14b-60fe-9897-be7795d79606",
+			"name": "liste des produits triés",
+			"url": "http://localhost:9090/Produits/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				241
+			],
+			"allTests": [
+				{}
+			],
+			"time": 241,
+			"totalRequestTime": 241,
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 0,
+	"totalFail": 0,
+	"totalTime": 4960,
+	"lifecycle": "done",
+	"willStop": false,
+	"requests": [
+		{
+			"name": "calculerMargeProduit",
+			"id": "ccee14d2-b017-03d4-6f62-babcbdd1f548",
+			"url": "http://localhost:9090/ProduitsTries/",
+			"time": 3480,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "Exception Produit gratuit",
+			"id": "55274c3c-0d46-4861-b6c0-db1d22fe90b5",
+			"url": "http://localhost:9090/Produits/",
+			"time": 1239,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		},
+		{
+			"name": "liste des produits triés",
+			"id": "7b02b2a1-c14b-60fe-9897-be7795d79606",
+			"url": "http://localhost:9090/Produits/",
+			"time": 241,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {},
+			"gridTitles": [],
+			"gridData": [
+				[]
+			],
+			"tests": {}
+		}
+	],
+	"synced": false
+}
